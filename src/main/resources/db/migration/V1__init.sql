@@ -1,0 +1,24 @@
+CREATE TABLE users (
+  id BIGINT IDENTITY(1,1) PRIMARY KEY,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  full_name VARCHAR(255) NOT NULL,
+  created_at DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME()
+);
+CREATE TABLE categories (
+  id BIGINT IDENTITY(1,1) PRIMARY KEY,
+  name VARCHAR(100) NOT NULL UNIQUE,
+  type VARCHAR(20) NOT NULL CHECK (type IN ('INCOME','EXPENSE'))
+);
+CREATE TABLE transactions (
+  id BIGINT IDENTITY(1,1) PRIMARY KEY,
+  user_id BIGINT NOT NULL,
+  category_id BIGINT NOT NULL,
+  amount DECIMAL(19,2) NOT NULL,
+  occurred_at DATE NOT NULL,
+  note VARCHAR(500) NULL,
+  created_at DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+  CONSTRAINT fk_tx_user FOREIGN KEY (user_id) REFERENCES users(id),
+  CONSTRAINT fk_tx_cat  FOREIGN KEY (category_id) REFERENCES categories(id)
+);
+INSERT INTO categories (name, type) VALUES
+('Salario','INCOME'),('Comida','EXPENSE'),('Transporte','EXPENSE'),('Ocio','EXPENSE');

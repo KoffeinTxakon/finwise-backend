@@ -50,12 +50,31 @@
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
 		</dependency>
+		
+				<!-- Flyway soporte SQL Server (necesario desde Flyway 10/11) -->
+		<!-- Flyway soporte para SQL Server -->
+		<dependency>
+		  <groupId>org.flywaydb</groupId>
+		  <artifactId>flyway-sqlserver</artifactId>
+		  <version>11.7.2</version>
+		</dependency>
+
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- SQL Server JDBC driver -->
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>13.2.0.jre11</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
